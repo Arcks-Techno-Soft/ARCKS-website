@@ -1,32 +1,30 @@
-import { Hero } from "@/components/sections/hero";
-import { LogoCloud } from "@/components/sections/logo-cloud";
-// import { Challenges } from "@/components/sections/challenges";
-import { Services } from "@/components/sections/services";
-import { Process } from "@/components/sections/process";
-import { VideoShowcase } from "@/components/sections/video-showcase";
-import { Stats } from "@/components/sections/stats";
-import { Industries } from "@/components/sections/industries";
-import { Testimonials } from "@/components/sections/testimonials";
-// import { CaseStudies } from "@/components/sections/case-studies";
+import { CompanyIntro } from "@/components/sections/company-intro";
 import { CTA } from "@/components/sections/cta";
-import { Challenges } from "@/components/sections/challenges";
+import { Faq } from "@/components/sections/faq";
+import { FloorDetails } from "@/components/sections/floor-details";
+import { Hero } from "@/components/sections/hero";
+import { MarqueeStrip } from "@/components/sections/marquee-strip";
+import { OfflineTable } from "@/components/sections/offline-table";
+import { OneMenu } from "@/components/sections/one-menu";
+import { ProductFamily } from "@/components/sections/product-family";
+import { Roadmap } from "@/components/sections/roadmap";
+import { SetupSteps } from "@/components/sections/setup-steps";
+import { HOME_QUESTIONS } from "@/lib/products";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <LogoCloud />
-      <Challenges />
-      <Services />
-      <Process />
-      <VideoShowcase />
-      <div className="relative z-10 bg-background rounded-t-[40px] -mt-[100vh] md:rounded-t-[60px]">
-        <Stats />
-        <Industries />
-        <Testimonials />
-        {/* <CaseStudies /> */}
-        <CTA />
-      </div>
+      <MarqueeStrip />
+      <CompanyIntro />
+      <ProductFamily />
+      <OneMenu />
+      <OfflineTable />
+      <FloorDetails />
+      <SetupSteps />
+      <Roadmap />
+      <Faq items={HOME_QUESTIONS} />
+      <CTA />
     </>
   );
 }

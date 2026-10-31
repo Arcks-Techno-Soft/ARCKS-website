@@ -1,29 +1,40 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4, JetBrains_Mono } from "next/font/google";
+import { Instrument_Serif, Inter, Inter_Tight, Space_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/smooth-scroll";
-import { CursorFollower } from "@/components/cursor-follower";
-import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { SITE_URL } from "@/lib/site";
 
-const inter = Inter({
-  variable: "--font-inter",
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
+
+const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin"] });
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: "400",
+  style: "italic",
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif-4",
+const spaceMono = Space_Mono({
+  variable: "--font-space-mono",
   subsets: ["latin"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "ARCKS | Business & Solution",
-  description: "Flexible Solutions for Modern Business",
+  metadataBase: new URL(SITE_URL),
+  title: "ARCKS Technosoft | Building Imli, the restaurant POS",
+  description:
+    "ARCKS Technosoft is building Imli, point of sale software for restaurants: offline-first billing, self-order kiosks and digital menu boards, all run from one menu.",
+  openGraph: {
+    type: "website",
+    siteName: "ARCKS Technosoft",
+    title: "ARCKS Technosoft | Building Imli, the restaurant POS",
+    description:
+      "ARCKS Technosoft is building Imli: offline-first billing, self-order kiosks and digital menu boards for restaurants.",
+  },
 };
 
 export default function RootLayout({
@@ -34,15 +45,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${interTight.variable} ${instrumentSerif.variable} ${spaceMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to content
+        </a>
         <SmoothScroll>
           <Navbar />
-          <main className="grow">{children}</main>
+          <main id="main" className="grow">
+            {children}
+          </main>
           <Footer />
         </SmoothScroll>
-        <CursorFollower />
       </body>
     </html>
   );
